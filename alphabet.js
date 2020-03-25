@@ -4,7 +4,6 @@ let alphabet = {
             "deg": 0,
             "mark": {
                 "type": "circle",
-                "angle": 0,
                 "radius": 20
             }
         },
@@ -12,9 +11,10 @@ let alphabet = {
             "deg": 90,
             "mark": {
                 "type": "line",
-                "angle": 90,
-                "stroke": 3
+                "angle": 45,
+                "stroke": 3,
+                "length": 10
             }
         }
     ]
-}
+};

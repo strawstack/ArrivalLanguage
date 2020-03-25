@@ -2,6 +2,10 @@
 
 A map from english words to symbols inspired by the film, and Ted Chiang's short-story, `Arrival`
 
+# TODO
+
+- [ ] proof of concept
+
 ## Letters
 
 A pattern of circles, ovals, and lines distributed around the circle. Circles, ovals, round end-cap lines. All black, so they merge together
@@ -27,6 +31,14 @@ Note: some good ideas toward the bottom. There’s enough here to get started on
 ## Example Letter
 
 For example, “a” is a line sticking horizontally out the right side of the circle, and there’s a few dots next to it to represent multiple “a” in the sentence
+
+## Line Design
+
+D3 can take an array of points and render a thick/smooth line with an end cap, so a `line` can be a loose collection of consecutive points with smoothing applied to the line through them
+
+## Circle Design
+
+A `circle` can be a collection of points with some random shuffling (in/out), a smooth line, and fill
 
 ## Challenge Question
 
