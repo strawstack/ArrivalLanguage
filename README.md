@@ -4,7 +4,24 @@ A map from english words to symbols inspired by the film, and Ted Chiang's short
 
 # TODO
 
-- [ ] proof of concept
+- [x] Proof of concept
+- [x] Design prototype alphabet
+- [x] Ability to place blob at larger radius
+- [x] First point of line should not jitter
+- [x] Line jitter should be random walk
+
+- [ ] Make circles into ellipse
+
+- [ ] Add effects for letter frequency
+    - [ ] 1 - 3 lines inside
+    - [ ] 1 - 3 dots inside
+
+- [ ] Some large circles should have medium circles on either side
+    - to create an ellipse like shape
+- [ ] Some medium circles should have small circles on either side
+    - to create an ellipse like shape
+- [ ] Add noise like small dots and lines
+    - [ ] Could be a slightly fainter color
 
 ## Letters
 

@@ -2,6 +2,7 @@ html, body {
     padding: 0px;
     margin: 0px;
     height: 100%;
+    font-family: 'Varela Round', sans-serif;
 }
 .page-area {
     height: 100%;
@@ -9,7 +10,19 @@ html, body {
     justify-content: center;
     align-items: center;
 }
-svg {
+.svg-area {
     width: 600px;
     height: 600px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+svg {
+    position: relative;
+    width: 100%;
+}
+.text-area {
+    position: absolute;
+    color: #777;
 }
