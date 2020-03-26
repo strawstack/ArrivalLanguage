@@ -4,7 +4,7 @@ A map from english words to symbols inspired by the film, and Ted Chiang's short
 
 # Screenshot
 
-[![](./screenshot.png)](#)
+[![](./screenshot2.png)](#)
 
 # Live Demo
 
