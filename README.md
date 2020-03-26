@@ -2,26 +2,6 @@
 
 A map from english words to symbols inspired by the film, and Ted Chiang's short-story, `Arrival`
 
-# TODO
-
-- [x] Proof of concept
-- [x] Design prototype alphabet
-- [x] Ability to place blob at larger radius
-- [x] First point of line should not jitter
-- [x] Line jitter should be random walk
-- [x] Make circles into ellipse
-
-- [ ] Add effects for letter frequency
-    - [ ] 1 - 3 lines inside
-    - [ ] 1 - 3 dots inside
-
-- [ ] Some large circles should have medium circles on either side
-    - to create an ellipse like shape
-- [ ] Some medium circles should have small circles on either side
-    - to create an ellipse like shape
-- [ ] Add noise like small dots and lines
-    - [ ] Could be a slightly fainter color
-
 ## Letters
 
 A pattern of circles, ovals, and lines distributed around the circle. Circles, ovals, round end-cap lines. All black, so they merge together
@@ -76,3 +56,16 @@ A system of points that emit heat. Colour pixels that come close to enough dots
 Pass rectangular characters through some sort of filter. So, a rigid circle character fills in pre placed fluid shaped, but only if there is enough overlay between the filled in rectangles, and the fluid shapes
 
 Each letter is some circles and lines. Each sentence is a mush of those letters into a circle
+
+# TODO
+
+- [x] Proof of concept
+- [x] Design prototype alphabet
+- [x] Ability to place blob at larger radius
+- [x] First point of line should not jitter
+- [x] Line jitter should be random walk
+- [x] Make circles into ellipse
+- [x] Add effects for letter frequency
+    - [x] 1 - 2 lines inside
+- [x] Add noise like small dots and lines
+    - [x] Could be a slightly fainter color
