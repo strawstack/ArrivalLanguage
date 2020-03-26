@@ -4,11 +4,11 @@ A map from english words to symbols inspired by the film, and Ted Chiang's short
 
 # Screenshot
 
-[![](./screenshot2.png)](#)
+[![](./screenshot2.png)](https://regularmemory.blog/ArrivalLanguage/)
 
 # Live Demo
 
-[View Live Demo](#)
+[View Live Demo](https://regularmemory.blog/ArrivalLanguage/)
 
 # GIF Demo
 
