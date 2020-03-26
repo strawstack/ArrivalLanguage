@@ -6,13 +6,76 @@ class Arrival {
         this.alphabet = _alphabet;
     }
     renderWord(word) {
+        this.showNoise();
         word = word.toLowerCase();
         // Render a word
         this.renderFoundation(word);
-        for (let c of word) {
-            this.renderCharacter(c);
+        let fz = this.letterFz(word);
+        for (let k in fz) {
+            this.renderCharacter(k, fz[k]);
         }
         this.showWord(word);
+    }
+    showNoise() {
+        let count = 24;
+        let radius = 10;
+        let numberPoints = 7;
+        let length = 5;
+        let jitter = 5;
+        for (let i = 0; i < count; i++) {
+            let x = Math.random() * (config.width - 40) + 20;
+            let y = Math.random() * (config.height - 40) + 20;
+            if (Math.random() < 0.3) {
+                this.noiseBlob(x, y, radius, numberPoints, jitter);
+            } else {
+                let lineWidth = [3, 1];
+                let width = lineWidth[Math.floor(Math.random() * lineWidth.length)];
+                this.noiseLine(x, y, length, width, numberPoints, jitter);
+            }
+        }
+    }
+    noiseBlob(bx, by, radius, points, jitter) {
+        let _cp = this.circlePoints(radius, points, jitter);
+        let cp = this.shiftPoints(_cp, {x: bx, y: by});
+
+        let lineGenerator = d3.line()
+            .x(d => d.x)
+            .y(d => d.y)
+            .curve(d3.curveBasisClosed); // curveCatmullRom
+
+        this.svg.append("path")
+            .datum(cp)
+            .attr("class", "line")
+            .attr("d", lineGenerator)
+            .attr("fill", "#555");
+    }
+    noiseLine(x, y, length, lineWidth, numberPoints, jitter) {
+        let _cp = this.linePoints(Math.random() * 360, length, numberPoints, jitter);
+
+        // Shift the line to the correct location
+        let cp = this.shiftPoints(_cp, {x: x, y: y});
+
+        let lineGenerator = d3.line()
+            .x(d => d.x)
+            .y(d => d.y)
+            .curve(d3.curveCatmullRom); // curveBasisClosed
+
+        this.svg.append("path")
+            .datum(cp)
+            .attr("class", "line")
+            .attr("d", lineGenerator)
+            .attr("fill", "transparent")
+            .attr("stroke", "#555")
+            .attr("stroke-width", lineWidth)
+            .attr("stroke-linecap", "round");
+    }
+    letterFz(word) {
+        let map = {};
+        for (let c of word) {
+            if (!(c in map)) map[c] = 0;
+            map[c] += 1;
+        }
+        return map;
     }
     showWord(word) {
         document.querySelector(".text-area").innerHTML = word;
@@ -98,7 +161,7 @@ class Arrival {
         // Shift the shape to the right location
         let xc = (config.radius + radiusOffset) * Math.cos(H.rad(deg));
         let yc = (config.radius + radiusOffset) * -1 * Math.sin(H.rad(deg));
-        _cp = this.rotatePoints(_cp, -deg);
+        _cp = this.rotatePoints(_cp, -deg + 90);
         _cp = this.shiftPoints(_cp, config.center);
         let cp = this.shiftPoints(_cp, {x: xc, y: yc});
 
@@ -122,6 +185,8 @@ class Arrival {
         // Calc jitter and number of points
         let jitter = length * 0.3;
         let numberPoints = 9;
+        let lineWidth = [8, 4, 2];
+        let count = 3;
 
         // Get a line of points
         let _cp = this.linePoints(angle, length, numberPoints, jitter);
@@ -132,19 +197,43 @@ class Arrival {
         _cp = this.shiftPoints(_cp, config.center);
         let cp = this.shiftPoints(_cp, {x: xc, y: yc});
 
-        let lineGenerator = d3.line()
-            .x(d => d.x)
-            .y(d => d.y)
-            .curve(d3.curveCatmullRom); // curveBasisClosed
+        while (count > 0) {
 
-        this.svg.append("path")
-            .datum(cp)
-            .attr("class", "line")
-            .attr("d", lineGenerator)
-            .attr("fill", "transparent")
-            .attr("stroke", "#333")
-            .attr("stroke-width", "8")
-            .attr("stroke-linecap", "round");
+            // Rejitter points
+            cp = this.reJitter(cp, deg, 30);
+
+            let lineGenerator = d3.line()
+                .x(d => d.x)
+                .y(d => d.y)
+                .curve(d3.curveCatmullRom); // curveBasisClosed
+
+            this.svg.append("path")
+                .datum(cp)
+                .attr("class", "line")
+                .attr("d", lineGenerator)
+                .attr("fill", "transparent")
+                .attr("stroke", "#333")
+                .attr("stroke-width", lineWidth[count - 1])
+                .attr("stroke-linecap", "round");
+            count -= 1;
+        }
+    }
+    reJitter(points, deg, _jitter) {
+        // Return points with jitter
+        let jitter = () => this.rand(-1 * _jitter/2, _jitter/2);
+        let jitterVec2 = () => {
+            let xc = jitter() * Math.cos(H.rad(deg + 90));
+            let yc = jitter() * -1 * Math.sin(H.rad(deg + 90));
+            return {x: xc, y: yc};
+        };
+        return points.map((p, i) => {
+            if (i == 0) return p; // Don't jitter first point in line
+            let j = jitterVec2();
+            return {
+                x: p.x + j.x,
+                y: p.y + j.y
+            };
+        });
     }
     linePoints(deg, length, numberPoints, _jitter) {
         // Returns [Point{x:,y:}] an array of points
@@ -180,7 +269,7 @@ class Arrival {
             y: a.y + b.y
         };
     }
-    renderCharacter(char) {
+    renderCharacter(char, fz) {
         // Render given character
         let charData = this.alphabet[char];
         for (let data of charData) {
@@ -189,12 +278,14 @@ class Arrival {
                 let radius = data.radius;
                 let radiusOffset = data.radiusOffset;
                 this.renderBlob(deg, radius, radiusOffset);
+                this.renderFz(deg, fz);
 
             } else if (data.type === H.shape.stroke) {
                 let deg = data.deg;
                 let length = data.length;
                 let angle = data.angle;
                 this.renderStroke(deg, length, angle);
+                this.renderFz(deg, fz);
 
             } else if (data.type === H.shape.blobEllipse) {
                 let deg = data.deg;
@@ -202,10 +293,23 @@ class Arrival {
                 let yRadius = data.yRadius;
                 let radiusOffset = data.radiusOffset;
                 this.renderBlobEllipse(deg, xRadius, yRadius, radiusOffset);
+                this.renderFz(deg, fz);
 
             } else {
                 console.log("Char type not recognized");
             }
+        }
+    }
+    renderFz(deg, fz) {
+        if (fz == 2) {
+            this.renderStroke(deg, config.strokeLength, deg + 180);
+
+        } else if (fz >= 3) {
+            this.renderStroke(deg, config.strokeLength, deg + 180);
+            this.renderStroke(deg, config.strokeLength, deg + 210);
+
+        } else {
+            console.log("Use dots to indicate 4 or more");
         }
     }
     circlePoints(radius, number, _jitter, startAngle) {

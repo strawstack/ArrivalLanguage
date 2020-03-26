@@ -9,8 +9,7 @@ A map from english words to symbols inspired by the film, and Ted Chiang's short
 - [x] Ability to place blob at larger radius
 - [x] First point of line should not jitter
 - [x] Line jitter should be random walk
-
-- [ ] Make circles into ellipse
+- [x] Make circles into ellipse
 
 - [ ] Add effects for letter frequency
     - [ ] 1 - 3 lines inside

@@ -3,8 +3,8 @@ let alphabet = {
         {
             "deg": 270,
             "type": H.shape.blobEllipse,
-            "xRadius": config.blobRadius.small,
-            "yRadius": config.blobRadius.medium,
+            "xRadius": config.blobRadius.medium,
+            "yRadius": config.blobRadius.small,
             "radiusOffset": 0
         }
     ],
@@ -27,16 +27,18 @@ let alphabet = {
     "d": [
         {
             "deg": 330,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.medium,
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.large,
+            "yRadius": config.blobRadius.medium,
             "radiusOffset": config.blobRadius.medium
         }
     ],
     "e": [
         {
             "deg": 300,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.small
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.medium,
+            "yRadius": config.blobRadius.small
         }
     ],
     "f": [
@@ -58,30 +60,34 @@ let alphabet = {
     "h": [
         {
             "deg": 0,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.medium,
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.large,
+            "yRadius": config.blobRadius.medium,
             "radiusOffset": config.blobRadius.medium
         }
     ],
     "i": [
         {
             "deg": 240,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.small
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.medium,
+            "yRadius": config.blobRadius.small
         }
     ],
     "j": [
         {
             "deg": 60,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.large
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.xlarge,
+            "yRadius": config.blobRadius.large
         }
     ],
     "k": [
         {
             "deg": 150,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.large
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.xlarge,
+            "yRadius": config.blobRadius.large
         }
     ],
     "l": [
@@ -103,15 +109,17 @@ let alphabet = {
     "n": [
         {
             "deg": 30,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.medium
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.large,
+            "yRadius": config.blobRadius.medium
         }
     ],
     "o": [
         {
             "deg": 0,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.small
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.medium,
+            "yRadius": config.blobRadius.small
         }
     ],
     "p": [
@@ -125,31 +133,35 @@ let alphabet = {
     "q": [
         {
             "deg": 180,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.large
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.xlarge,
+            "yRadius": config.blobRadius.large
         }
     ],
     "r": [
         {
             "deg": 270,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.medium,
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.large,
+            "yRadius": config.blobRadius.medium,
             "radiusOffset": config.blobRadius.medium
         }
     ],
     "s": [
         {
             "deg": 30,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.medium,
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.large,
+            "yRadius": config.blobRadius.medium,
             "radiusOffset": config.blobRadius.medium
         }
     ],
     "t": [
         {
             "deg": 330,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.small
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.medium,
+            "yRadius": config.blobRadius.small
         },
     ],
     "u": [
@@ -163,8 +175,9 @@ let alphabet = {
     "v": [
         {
             "deg": 120,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.large
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.xlarge,
+            "yRadius": config.blobRadius.large
         }
     ],
     "w": [
@@ -178,8 +191,9 @@ let alphabet = {
     "x": [
         {
             "deg": 90,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.large
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.xlarge,
+            "yRadius": config.blobRadius.large
         }
     ],
     "y": [
@@ -193,8 +207,9 @@ let alphabet = {
     "z": [
         {
             "deg": 210,
-            "type": H.shape.blob,
-            "radius": config.blobRadius.large
+            "type": H.shape.blobEllipse,
+            "xRadius": config.blobRadius.xlarge,
+            "yRadius": config.blobRadius.large
         }
     ]
 };
